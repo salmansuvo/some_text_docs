@@ -1,0 +1,59 @@
+<<<<---- ROLO Users Roles ---->>>>>
+Hi. yes good question:
+
+we have groups and roles, and all are in the table 'groups'
+
+there are four roles: admin, klant (=customer), vermogensbeheerder (=employee type 1) and tussenpersoon (=employee type 2). The first four records in the group table.
+
+And then we also have groups (all other records in the group table).
+
+Each user had only one of the 'roles', so an user is admin OR klant OR vermogensbeheerder OR tussenpersoon
+
+and next to this role a user can belong to one or more of the other groups in the table groups
+
+admin's can see everything
+
+a klant (/customer) can only see his own data
+
+and the vermogensbeheer (employee type 1) and tussenpersoon (employee type 2) can see all the data of customers that are in the same group
+
+I think it would be better to split the roles and groups in seperate tables... The way I build this in codeigniter is a bit of a hack and probably not the best way to do this...
+
+Does this make it a bit clear for you?
+
+New users are added in two ways:
+
+- an admin can add a user. By doing this he has to select admin/klant/vermogensbeheerder/tussenpersoon and he can also assign this user to one or more groups
+
+- there is a syncs between our CRM Freshsales, if there is a new customer this will be added to the database with the role 'customer' (somewhere in the model/update_data.php file)
+
+
+
+---->>> Md Salman Shah 3:31 AM
+		Ok to split roles from group
+		we need to separate table roles and user_roles
+
+		I can see there are other Ids from groups are related in user_groups.
+		could you please explain it a little bit?
+
+-->	RW
+	Robbert Weijers 3:33 AM
+	hmm wat do you mean?
+
+	in user_groups there are the relations between users and groups
+
+	so each user had there a relation with one of the first four groups(=roles), and next to that each user has also a relation with one (or more) from the other groups
+
+	so user 191 has group_id 2 (Klant/customer, role of this user is customer) and also group_id 5 (Post Vermogensbeheer),
+
+	user 162 had group_id 3 (vermogensbeheerder /e employee, role is employee type 1) and also group_id 5 (Post Vermogensbeheer)
+
+	this user 162 has employee right, so he can see data from customers. But he can only see data from his 'own' customers, so the customers with his group_id 5, like the user 191 has
+
+	this user 162 cannot see the data of user 549, becasue that user (customer) has not group_id 5 but has group_id 13 (next to his role as customer)
+
+---->>>	Md Salman Shah 3:50 AM
+		okay so, If we split roles and groups tables.
+		then the groups and user_groups table together will contain and define the employee and customer relation mapping.
+		right?
+		And roles and user_roles will be used only for roles.
