@@ -1,0 +1,22 @@
+127.0.0.1	localhost
+127.0.1.1	salman
+127.0.0.1	b2b-inventory.test
+127.0.0.1	b2b-wholesale.test
+127.0.0.1	mingle.test
+127.0.0.1   canteen.test
+127.0.0.1   pbc.test
+127.0.0.1   olfat.test
+127.0.0.1   smp.test
+127.0.0.1	mingle_new.test
+127.0.0.1	h_shop.test
+127.0.0.1   btc.test
+127.0.0.1   rolo_old.test
+127.0.0.1   new.aperally.com.test
+127.0.0.1   gpos.test
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
